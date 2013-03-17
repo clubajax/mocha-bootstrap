@@ -1,0 +1,22 @@
+{
+	"name": "mocha-bootstrap",
+	"author": "Mike Wilcox",
+	"version": "1.0",
+	"description": "Mocha Bootstrap demonstrates how to create Mocha tests with Require.js and Node.js.",
+	"dependencies":{
+		"requirejs":"2.0",
+		"mocha":"1.8",
+		"chai":"1.5"
+	},
+	"licenses": [{
+		"type": "AFLv2.1",
+		"url": "http://trac.dojotoolkit.org/browser/dojo/trunk/LICENSE#L43"
+	},{
+		"type": "BSD",
+		"url": "http://trac.dojotoolkit.org/browser/dojo/trunk/LICENSE#L13"	
+	}],
+	"maintainers": [{
+		"name": "Mike Wilcox",
+		"email": "anm9tr@gmail.com"
+	}]
+}

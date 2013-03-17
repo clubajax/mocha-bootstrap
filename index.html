@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Test Mocha</title>
+	<link href='../node_modules/mocha/mocha.css' rel='stylesheet' />
+	<script src='../node_modules/mocha/mocha.js'></script>
+	<script src='../node_modules/requirejs/require.js'></script>
+	<script>
+		requirejs.config({
+			baseUrl:'.',
+			paths:{
+				'chai':'./node_modules/chai/chai'
+			}
+		});
+		
+		mocha.setup({
+			ui: 'bdd',
+			ignoreLeaks: true
+		});
+	</script>
+	<style>
+		.note{
+			font-size: 12px;
+			width: 400px;
+		}
+	</style>
+</head>
+<body>
+    <h2>Test Mocha</h2>
+	<p class='note'>
+		This is a very rough example for how to get Mocha running in the browser with require.js
+		It is not extensive; it was mainly used for fact finding for getting mocha, require.js, and Node.js
+		to work together.
+	</p>
+	<div id="mocha"></div>
+	<script>
+		
+		// chai needed to be loaded throuh requirejs, or things got confused.
+		require(['chai'], function(chai){
+			window.chai = chai;
+			
+			// This was an attempt to override dependencies using their relative-path identifiers.
+			// This works in the browser, but in Node it's impossible to get a handle on `define`.
+			// Left here for posterity.
+			window.stubs = {};
+			var __define = define;
+			window.define = function(deps, cb){
+				if(Array.isArray(deps)){
+					var i, dep;
+					
+					for(i=0;i<deps.length;i++){
+						if(stubs[deps[i]]){
+							console.log('stubbit!');
+							dep = deps[i];
+							break;
+						}
+					}
+					
+					if(dep){
+						__define(deps, function(){
+							arguments[i] = stubs[deps[i]];
+							console.log('stubbify');
+							return cb.apply(null, arguments);
+						});
+						
+						return;
+					}
+				}
+				__define(deps, cb);
+			};
+			
+			
+			var mochaRun = mocha.run;
+			
+			// load files and pass them to the mocha runner.
+			require([
+				'lib/tests/Main_spec_browser'		 
+			], mochaRun);
+				
+		})
+		
+	</script>
+</body>
+</html>
