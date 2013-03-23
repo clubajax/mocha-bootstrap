@@ -17,9 +17,7 @@ Install mocha-bootstrap
 Install dependencies
 ```
 $ cd mocha-bootstrap
-$ npm install mocha
-$ npm install chai
-$ npm install requirejs
+$ npm install
 ```
 
 Run browser version:
