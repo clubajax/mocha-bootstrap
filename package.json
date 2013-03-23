@@ -4,8 +4,8 @@
 	"version": "1.0",
 	"description": "Mocha Bootstrap demonstrates how to create Mocha tests with Require.js and Node.js.",
 	"repository": {
-    "type":"git",
-    "url":"git://github.com/clubajax/mocha-bootstrap.git"
+	"type":"git",
+	"url":"git://github.com/clubajax/mocha-bootstrap.git"
   },
 	"dependencies":{
 		"requirejs":"2.0",
